@@ -12,90 +12,170 @@ DATA = {
     "골프 브랜드": [
         {
             "id": "brand-1",
-            "date": "04.06",
-            "source": "골프경제신문",
-            "title": "대보골프단, 2026 시즌 출정식 진행",
+            "date": "04.07",
+            "source": "레저신문",
+            "title": "5년 국내 골프용품 브랜드 점유율 조사 결과 발표",
             "priority": "HIGH",
-            "oneLine": "브랜드와 선수단 서사가 결합되는 시즌 초 핵심 콘텐츠",
-            "summary": "KPGA·KLPGA 선수단 구성 공개와 함께 시즌 전략 발표가 진행되며 브랜드 스토리 노출이 확대됨.",
+            "oneLine": "테일러메이드·젝시오·핑 3강, 골프웨어는 말본 1위",
+            "summary": "2022~2026년 5년간 국내 골퍼 사용 브랜드 조사에서 테일러메이드(17%)가 드라이버 점유율 2년 연속 1위를 유지했으며, 골프웨어 부문은 말본(16%)이 1위를 기록했다.",
             "headlines": [
-                {"title": "KPGA·KLPGA 선수단 6명 구성 공개", "url": "https://search.naver.com/search.naver?where=news&query=KPGA%20선수단"},
-                {"title": "시즌 출정식 통해 운영 방향 발표", "url": "https://search.naver.com/search.naver?where=news&query=골프단%20출정식"},
-                {"title": "브랜드 후원 노출 확대 계획 언급", "url": "https://search.naver.com/search.naver?where=news&query=골프%20후원%20브랜드"},
+                {"title": "테일러메이드 드라이버 점유율 2년 연속 1위", "url": "https://search.naver.com/search.naver?where=news&query=테일러메이드+골프+점유율+2026"},
+                {"title": "젝시오 2위, 핑·캘러웨이 공동 3위 경쟁", "url": "https://search.naver.com/search.naver?where=news&query=젝시오+핑+골프+브랜드+점유율"},
+                {"title": "골프웨어 말본 1위, 브랜드별 판도 변화", "url": "https://search.naver.com/search.naver?where=news&query=말본+골프웨어+2026"},
             ],
-            "insight": "시즌 출정·선수단 이슈는 단순 판촉보다 '이유 있는 행사'로 활용 가능.",
-            "actions": ["선수 협업 팝업", "시즌 테마 매장 구성"],
+            "insight": "1위 장비 브랜드 연계 시타존·기획 상품 구성 시 구매 전환 효과가 직접적으로 기대됨.",
+            "actions": ["테일러메이드 시타존 운영", "말본 골프웨어 팝업"],
         },
         {
             "id": "brand-2",
-            "date": "04.14",
-            "source": "매일경제",
-            "title": "프리미엄 골프 장비 시장 확대",
-            "priority": "HIGH",
-            "oneLine": "고가 장비 중심 소비 확대",
-            "summary": "퍼터, 클럽 등 고가 장비 판매 비중 증가로 프리미엄 시장 경쟁 심화.",
+            "date": "04.10",
+            "source": "한국섬유신문",
+            "title": "백화점 골프웨어 매출 하락, 프리미엄 소비 피로 누적",
+            "priority": "MID",
+            "oneLine": "코로나 특수 소멸 후 고가 골프웨어 수요 둔화",
+            "summary": "2025년 주요 백화점 골프웨어 매출이 프리미엄 라인 중심으로 하락세를 보이며, 2026년도 뚜렷한 반등보다 조정 국면 연장이 유력하다는 분석이 나왔다.",
             "headlines": [
-                {"title": "프리미엄 퍼터 판매 비중 상승", "url": "https://search.naver.com/search.naver?where=news&query=프리미엄%20퍼터"},
-                {"title": "고가 장비 시장 경쟁 심화", "url": "https://search.naver.com/search.naver?where=news&query=골프%20장비%20시장"},
-                {"title": "브랜드별 상위 라인 강화", "url": "https://search.naver.com/search.naver?where=news&query=골프%20브랜드%20라인"},
+                {"title": "주요 백화점 골프웨어 매출 하락 지속", "url": "https://search.naver.com/search.naver?where=news&query=백화점+골프웨어+매출+2026"},
+                {"title": "프리미엄 골프웨어 소비 피로도 누적", "url": "https://search.naver.com/search.naver?where=news&query=프리미엄+골프웨어+시장+조정"},
+                {"title": "가성비 중심 골프웨어 수요 상대적 강세", "url": "https://search.naver.com/search.naver?where=news&query=가성비+골프웨어+트렌드+2026"},
             ],
-            "insight": "체험형·상담형 판매 구조 필요.",
-            "actions": ["시타존", "VIP 상담"],
+            "insight": "프리미엄 일괄 정책보다 가격대별 세분화와 차별화된 체험 제안이 필요한 시점.",
+            "actions": ["중가 골프웨어 기획전", "가성비 브랜드 전면 배치"],
+        },
+        {
+            "id": "brand-3",
+            "date": "04.15",
+            "source": "골프코스세미나",
+            "title": "2026 골프산업 '초정밀 경영' 시대 진입",
+            "priority": "HIGH",
+            "oneLine": "AI·데이터 기반 경영이 골프업계 표준으로",
+            "summary": "팬데믹 이후 양적 팽창에서 질적 최적화로 전환된 골프산업에서 AI·자동화·환경 가치를 결합한 '초정밀 경영'이 핵심 경쟁력으로 부상했다.",
+            "headlines": [
+                {"title": "골프장 AI·자동화 경영 업계 표준화 진입", "url": "https://search.naver.com/search.naver?where=news&query=골프장+AI+자동화+경영+2026"},
+                {"title": "젊은 골퍼·여성 골퍼 비중 25% 돌파", "url": "https://search.naver.com/search.naver?where=news&query=여성+골퍼+젊은+골퍼+비중+2026"},
+                {"title": "데이터 기반 맞춤형 골프 경험 수요 확산", "url": "https://search.naver.com/search.naver?where=news&query=데이터+기반+골프+맞춤+경험"},
+            ],
+            "insight": "고객 데이터 기반 맞춤 제안이 차별화된 구매 경험의 핵심이 되는 시점.",
+            "actions": ["VIP 맞춤 상담 프로그램", "데이터 기반 상품 큐레이션"],
         },
     ],
     "골프 경기": [
         {
             "id": "event-1",
-            "date": "04.02",
-            "source": "골프경제신문",
-            "title": "스크린골프 대회 결선",
+            "date": "04.07",
+            "source": "스포츠경향",
+            "title": "KLPGA 더 시에나 오픈 2026 성료, 고지원 우승",
             "priority": "HIGH",
-            "oneLine": "참여형 골프 콘텐츠 확대",
-            "summary": "스크린골프 대회 결선이 진행되며 대중 참여형 콘텐츠 확대.",
+            "oneLine": "시즌 개막전 흥행 성공, 참여형 집객 이벤트 연계 기회",
+            "summary": "4월 2~5일 개최된 KLPGA 개막전 더 시에나 오픈에서 고지원이 13언더파로 우승하며 시즌 초 화제성을 이끌었다. 경기력과 화제성 모두 잡은 흥행 대회로 평가받았다.",
             "headlines": [
-                {"title": "스크린골프 결선 개최", "url": "https://search.naver.com/search.naver?where=news&query=%EC%8A%A4%ED%81%AC%EB%A6%B0%EA%B3%A8%ED%94%84%20%EA%B2%B0%EC%84%A0"},
-                {"title": "참가자 규모 확대", "url": "https://search.naver.com/search.naver?where=news&query=%EC%8A%A4%ED%81%AC%EB%A6%B0%EA%B3%A8%ED%94%84%20%EC%B0%B8%EA%B0%80%EC%9E%90"},
-                {"title": "온라인 중계 병행", "url": "https://search.naver.com/search.naver?where=news&query=%EC%8A%A4%ED%81%AC%EB%A6%B0%EA%B3%A8%ED%94%84%20%EC%A4%91%EA%B3%84"},
+                {"title": "고지원, 더 시에나 오픈 2026 우승(13언더파)", "url": "https://search.naver.com/search.naver?where=news&query=고지원+더+시에나+오픈+2026"},
+                {"title": "KLPGA 개막전 경기력·화제성 모두 성공", "url": "https://search.naver.com/search.naver?where=news&query=KLPGA+더시에나오픈+2026"},
+                {"title": "봄 시즌 KLPGA 2026 흥행 출발 순조", "url": "https://search.naver.com/search.naver?where=news&query=KLPGA+2026+시즌+개막"},
             ],
-            "insight": "오프라인 참여형 이벤트로 확장 가능.",
-            "actions": ["매장 이벤트", "참여형 대회"],
-        }
+            "insight": "시즌 개막전 화제성 → 선수 연계 팝업·KLPGA 응원 기획전으로 집객 연결 가능.",
+            "actions": ["선수 응원 팝업", "KLPGA 시즌 개막 기획전"],
+        },
+        {
+            "id": "event-2",
+            "date": "04.13",
+            "source": "골프한국",
+            "title": "슈퍼 루키 김민솔, KLPGA iM금융오픈 우승",
+            "priority": "HIGH",
+            "oneLine": "신예 루키 돌풍으로 2030 팬층 확대 기대",
+            "summary": "4월 9~12일 구미 개최 iM금융오픈에서 신예 김민솔이 -11타로 우승했다. 대회에 2만여 명 관중이 몰리며 지역 경제 활성화 효과까지 이끌어 참여형 골프 콘텐츠 확대를 확인했다.",
+            "headlines": [
+                {"title": "김민솔 iM금융오픈 우승, '슈퍼 루키' 등장", "url": "https://search.naver.com/search.naver?where=news&query=김민솔+iM금융오픈+우승+2026"},
+                {"title": "대회 2만여 명 관중 몰려 지역경제 훈풍", "url": "https://search.naver.com/search.naver?where=news&query=iM금융오픈+2026+관중"},
+                {"title": "공동 2위 전예성·안지현·김시현 선전", "url": "https://search.naver.com/search.naver?where=news&query=KLPGA+iM금융오픈+2026+결과"},
+            ],
+            "insight": "루키 선수 화제성은 2030 신규 골프 유입층과 연결 가능한 매장 이벤트 소재.",
+            "actions": ["루키 선수 협업 팝업", "신규 골퍼 입문 프로모션"],
+        },
+        {
+            "id": "event-3",
+            "date": "04.21",
+            "source": "골프한국",
+            "title": "김민선7, KLPGA 넥센·세인트나인 마스터즈 우승",
+            "priority": "MID",
+            "oneLine": "브랜드 협찬 대회 흥행으로 골프웨어 노출 극대화",
+            "summary": "KLPGA 4번째 대회인 넥센·세인트나인 마스터즈에서 김민선7이 우승하며 스포츠 브랜드 세인트나인의 노출 효과가 극대화됐다. 2026 KLPGA 시즌 4개 대회 모두 흥행 성공으로 평가됐다.",
+            "headlines": [
+                {"title": "김민선7 넥센·세인트나인 마스터즈 우승", "url": "https://search.naver.com/search.naver?where=news&query=김민선7+넥센+세인트나인+마스터즈+2026"},
+                {"title": "세인트나인 골프웨어 대회 협찬 효과 부각", "url": "https://search.naver.com/search.naver?where=news&query=세인트나인+골프웨어+2026"},
+                {"title": "KLPGA 4개 대회 연속 흥행 성공 평가", "url": "https://search.naver.com/search.naver?where=news&query=KLPGA+2026+시즌+흥행"},
+            ],
+            "insight": "대회 협찬 골프웨어 브랜드 연계 상품 기획이 시즌 초 구매 의향 고객에게 효과적.",
+            "actions": ["협찬 브랜드 특별전", "선수 착용 아이템 전면 배치"],
+        },
     ],
     "골프장 현황": [
         {
             "id": "course-1",
-            "date": "04.10",
-            "source": "국내보도",
-            "title": "골프장 예약 증가",
-            "priority": "HIGH",
-            "oneLine": "라운딩 수요 증가",
-            "summary": "봄 시즌 진입과 함께 라운딩 예약 급증.",
+            "date": "04.08",
+            "source": "레저신문",
+            "title": "골프장 AI·자동화 경영 본격 궤도 진입",
+            "priority": "MID",
+            "oneLine": "최저임금·구인난 3중고 돌파구로 AI 자동화 채택 확산",
+            "summary": "최저임금 인상과 구인난, 내장객 감소라는 3중고를 해결하기 위해 국내 골프장이 AI·자동화를 업계 표준으로 채택하기 시작했다. 스마트 예약 시스템·무인 캐디 도입이 빠르게 확산되고 있다.",
             "headlines": [
-                {"title": "주말 예약률 상승", "url": "https://search.naver.com/search.naver?where=news&query=%EA%B3%A8%ED%94%84%EC%9E%A5%20%EC%A3%BC%EB%A7%90%20%EC%98%88%EC%95%BD"},
-                {"title": "그린피 일부 상승", "url": "https://search.naver.com/search.naver?where=news&query=%EA%B7%B8%EB%A6%B0%ED%94%BC%20%EC%83%81%EC%8A%B9"},
-                {"title": "수도권 중심 수요 집중", "url": "https://search.naver.com/search.naver?where=news&query=%EA%B3%A8%ED%94%84%EC%9E%A5%20%EC%88%98%EB%8F%84%EA%B6%8C%20%EC%88%98%EC%9A%94"},
+                {"title": "골프장 AI·자동화 도입 업계 표준化 진입", "url": "https://search.naver.com/search.naver?where=news&query=골프장+AI+자동화+경영+2026"},
+                {"title": "무인 캐디·스마트 예약 시스템 빠른 확산", "url": "https://search.naver.com/search.naver?where=news&query=골프장+스마트+예약+자동화"},
+                {"title": "내장객 감소 속 비용 절감형 경영 주목", "url": "https://search.naver.com/search.naver?where=news&query=골프장+내장객+감소+경영+2026"},
             ],
-            "insight": "구매 타이밍 도래.",
-            "actions": ["주말 프로모션", "라운딩 연계 행사"],
-        }
+            "insight": "골프장 서비스 품질이 차별화 포인트로 부상 — 용품·웨어 판매 채널의 프리미엄 서비스 강화 기회.",
+            "actions": ["라운딩 전후 장비 상담 서비스", "골프장 연계 패키지 프로모션"],
+        },
+        {
+            "id": "course-2",
+            "date": "04.14",
+            "source": "골프저널",
+            "title": "봄 시즌 퍼블릭 골프장 예약 급증, 가성비 라운딩 수요 본격화",
+            "priority": "HIGH",
+            "oneLine": "라운딩 수요 본격화, 실구매 전환 타이밍 도래",
+            "summary": "4월 봄 시즌을 맞아 퍼블릭 골프장 예약이 급증하고 있으며, 그린피 20만원 이상의 부담 속에서 가성비 중심 소비 패턴이 뚜렷해지고 있다. 할인 티타임 플랫폼 활용도 급증하고 있다.",
+            "headlines": [
+                {"title": "퍼블릭 골프장 봄 시즌 예약률 급상승", "url": "https://search.naver.com/search.naver?where=news&query=퍼블릭+골프장+예약+봄+2026"},
+                {"title": "평균 그린피 20만원대, 가성비 선택 증가", "url": "https://search.naver.com/search.naver?where=news&query=그린피+2026+퍼블릭"},
+                {"title": "할인 티타임 예약 플랫폼 이용 급증", "url": "https://search.naver.com/search.naver?where=news&query=골프장+할인+예약+플랫폼+2026"},
+            ],
+            "insight": "봄 라운딩 수요 증가는 장비·웨어 구매 타이밍과 직결 — 주말 프로모션 및 묶음 행사 운영 적기.",
+            "actions": ["봄 라운딩 시즌 기획전", "장비·웨어 묶음 할인 행사"],
+        },
     ],
     "기타 이슈": [
         {
             "id": "other-1",
-            "date": "04.15",
-            "source": "국내 스포츠",
-            "title": "러닝 시장 급성장",
+            "date": "04.04",
+            "source": "골프코스세미나",
+            "title": "여성·젊은 골퍼 비중 25% 돌파, 골프 소비 구조 변화",
             "priority": "HIGH",
-            "oneLine": "스포츠 카테고리 확장 기회",
-            "summary": "러닝 인구 증가와 함께 관련 상품 매출 확대.",
+            "oneLine": "2030 여성 골퍼 주류화로 새로운 소비층 부상",
+            "summary": "2026년 여성과 젊은 골퍼가 전체의 25% 이상을 차지하며 골프 문화의 주류로 자리 잡았다. 이들은 스크린·필드 하이브리드 경험과 골프+웰니스 복합 서비스를 선호하며 기존 소비층과 다른 구매 패턴을 보인다.",
             "headlines": [
-                {"title": "러닝화 매출 상승", "url": "https://search.naver.com/search.naver?where=news&query=%EB%9F%AC%EB%8B%9D%ED%99%94%20%EB%A7%A4%EC%B6%9C"},
-                {"title": "마라톤 참가자 증가", "url": "https://search.naver.com/search.naver?where=news&query=%EB%A7%88%EB%9D%BC%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%90"},
-                {"title": "입문자 유입 확대", "url": "https://search.naver.com/search.naver?where=news&query=%EB%9F%AC%EB%8B%9D%20%EC%9E%85%EB%AC%B8%EC%9E%90"},
+                {"title": "여성·젊은 골퍼 전체 비중 25% 돌파", "url": "https://search.naver.com/search.naver?where=news&query=여성+골퍼+젊은+골퍼+비중+2026"},
+                {"title": "골프+웰니스 복합 라이프스타일 수요 급증", "url": "https://search.naver.com/search.naver?where=news&query=골프+웰니스+라이프스타일+2026"},
+                {"title": "스크린·필드 하이브리드 멤버십 선호 확산", "url": "https://search.naver.com/search.naver?where=news&query=스크린골프+필드골프+하이브리드"},
             ],
-            "insight": "교차 판매 기회.",
-            "actions": ["러닝 기획전", "복합 스포츠 존"],
-        }
+            "insight": "2030 여성 골퍼 중심 스타일링·콘텐츠형 제안이 신규 매출 확대의 핵심 레버.",
+            "actions": ["여성 골퍼 스타일링 기획전", "골프+웰니스 복합 프로모션"],
+        },
+        {
+            "id": "other-2",
+            "date": "04.18",
+            "source": "골프저널",
+            "title": "1인 골프·마이크로 투어 트렌드 급부상",
+            "priority": "MID",
+            "oneLine": "근거리 효율형 라운딩과 혼자 즐기는 솔로 골프 확산",
+            "summary": "장거리 골프 여행보다 집 근처에서 짧고 효율적인 라운드를 선호하는 '마이크로 투어'와 1인 골프 문화가 2026년 골프 소비의 새로운 트렌드로 자리 잡고 있다. 1인 골퍼를 겨냥한 플랫폼·상품 기획이 주목받는다.",
+            "headlines": [
+                {"title": "1인 골프·솔로 골퍼 시장 빠르게 성장", "url": "https://search.naver.com/search.naver?where=news&query=1인+골프+솔로+골퍼+2026"},
+                {"title": "마이크로 투어, 근거리 효율형 라운딩 선호", "url": "https://search.naver.com/search.naver?where=news&query=마이크로+골프+투어+근거리+2026"},
+                {"title": "골프 소비 패턴 '효율형'으로 전환 가속", "url": "https://search.naver.com/search.naver?where=news&query=골프+소비+트렌드+효율+2026"},
+            ],
+            "insight": "1인 골퍼 겨냥 단품 제안 강화와 '혼자 써도 좋은 장비' 큐레이션 기획이 유효.",
+            "actions": ["1인 골퍼 맞춤 장비 기획전", "효율형 용품 패키지 구성"],
+        },
     ],
 }
 
@@ -167,27 +247,27 @@ def build_store_idea(store, item):
                 "reason": f'{store["name"]} 고객 평균 연령대는 {store["avgAge"]}세이며 {store["trait"]} 특성이 있어 전통형 행사보다 콘텐츠형 웨어 제안이 더 적합합니다. 기사상 시즌 초 매출 상승 흐름과도 맞습니다.',
             })
 
-    if ("스크린골프" in item["title"] or "참여형" in item["oneLine"]):
+    if ("참여형" in item["oneLine"] or "루키" in item["title"] or "1인 골프" in item["title"] or "스크린골프" in item["title"]):
         if store["avgAge"] <= 45 or "젊은" in store["trait"] or store["name"] == "건대점":
             suggestions.append({
-                "title": f'{store["name"]} 참여형 골프 이벤트',
-                "idea": f'{store["name"]}에서 스크린골프 또는 참여형 이벤트를 열어 골프 관심 고객 유입을 확대합니다.',
-                "reason": f'{store["name"]}은 평균 연령 {store["avgAge"]}세로 비교적 젊은 고객 비중이 높거나 {store["trait"]} 특성이 있어 체험형 이벤트 반응을 기대할 수 있습니다. 기사에서도 참여형 콘텐츠 확대가 확인됩니다.',
+                "title": f'{store["name"]} 참여형·신규 유입 이벤트',
+                "idea": f'{store["name"]}에서 루키 선수 협업 또는 참여형 이벤트를 열어 골프 관심 신규 고객 유입을 확대합니다.',
+                "reason": f'{store["name"]}은 평균 연령 {store["avgAge"]}세로 비교적 젊은 고객 비중이 높거나 {store["trait"]} 특성이 있어 체험형·신규 유입 이벤트 반응을 기대할 수 있습니다. 기사에서도 루키 선수 화제성과 참여형 콘텐츠 확대가 확인됩니다.',
             })
 
-    if ("예약 증가" in item["title"] or "라운딩 수요" in item["oneLine"]):
+    if ("예약" in item["title"] or "라운딩 수요" in item["oneLine"]):
         suggestions.append({
             "title": f'{store["name"]} 라운딩 수요 대응 프로모션',
             "idea": f'{store["name"]}에서 라운딩 직전 수요를 노린 주말 프로모션이나 장비·웨어 묶음 제안을 운영합니다.',
             "reason": f'기사에서 봄 시즌 예약 증가와 수요 확대가 나타났고, {store["name"]}의 현재 연간 골프 매출 {store["annualSales"]} 및 구매고객수 {store["customers"]}를 감안하면 실구매 전환형 행사로 연결할 여지가 있습니다.',
         })
 
-    if ("러닝" in item["title"] or "스포츠 카테고리" in item["oneLine"]):
-        if "젊은" in store["trait"] or "상권단독" in store["trait"] or store["name"] == "잠실점":
+    if ("여성" in item["title"] or "마이크로" in item["title"] or "1인 골프" in item["title"] or "스포츠 카테고리" in item["oneLine"]):
+        if "젊은" in store["trait"] or "상권단독" in store["trait"] or store["name"] == "잠실점" or store["avgAge"] <= 47:
             suggestions.append({
-                "title": f'{store["name"]} 복합 스포츠 제안',
-                "idea": f'{store["name"]}에서 골프와 러닝을 함께 묶은 복합 스포츠존 또는 교차 제안 행사를 기획합니다.',
-                "reason": f'{store["name"]}의 특성인 "{store["trait"]}"은 복합 카테고리 확장에 유리합니다. 기사에서도 러닝 시장 급성장이 나타나 골프 고객 대상 교차 판매 명분이 충분합니다.',
+                "title": f'{store["name"]} 신규 골퍼층 맞춤 제안',
+                "idea": f'{store["name"]}에서 여성·젊은 골퍼와 1인 골퍼를 겨냥한 스타일링 중심 기획전 또는 효율형 용품 패키지 행사를 기획합니다.',
+                "reason": f'{store["name"]}의 특성인 "{store["trait"]}"은 신규 골퍼층 유입에 유리합니다. 기사에서 여성·젊은 골퍼 비중이 25%를 돌파하고 1인 골프 트렌드가 급부상하고 있어 타깃 제안 명분이 충분합니다.',
             })
 
     if not suggestions:
