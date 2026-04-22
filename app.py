@@ -324,8 +324,14 @@ if "expanded_id" not in st.session_state:
 st.markdown("""
 <style>
 /* ── base ── */
-.block-container { max-width: 1280px; padding-top: 0.75rem; padding-bottom: 3rem; }
+.block-container { max-width: 1280px; padding-top: 2rem; padding-bottom: 3rem; }
 html, body, [data-testid="stAppViewContainer"] { background: #f0fdf4; }
+
+/* Streamlit 기본 상단 툴바 숨김 */
+#MainMenu { visibility: hidden; }
+header[data-testid="stHeader"] { display: none; }
+[data-testid="stToolbar"] { display: none; }
+footer { visibility: hidden; }
 
 /* ── HEADER ── */
 .header-bar {
