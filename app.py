@@ -107,6 +107,19 @@ PRIORITY_STYLE = {
     "LOW":  ("⚪ LOW",  "#f1f5f9", "#64748b"),
 }
 
+PRIORITY_COLOR = {
+    "HIGH": "#dc2626",
+    "MID":  "#d97706",
+    "LOW":  "#94a3b8",
+}
+
+CATEGORY_ICON = {
+    "골프 브랜드": "🏌️",
+    "골프 경기": "🏆",
+    "골프장 현황": "⛳",
+    "기타 이슈": "📰",
+}
+
 STORE_PROFILES = [
     {"name": "잠실점",   "annualSales": "350억", "customers": "2만명",    "avgTicket": "80만원", "vipRatio": 45, "avgAge": 56, "trait": "롯데월드몰 이용가능"},
     {"name": "본점",     "annualSales": "250억", "customers": "1만 5천명", "avgTicket": "90만원", "vipRatio": 50, "avgAge": 47, "trait": "외국인 고객 많음"},
@@ -217,7 +230,7 @@ def build_store_insights(store, selected_cards):
     return ideas[:3]
 
 
-# ── session state ─────────────────────────────────────────────────────────────
+# ── session state ──────────────────────────────────────────────────────────────
 if "page" not in st.session_state:
     st.session_state.page = "news"
 if "category" not in st.session_state:
@@ -230,132 +243,183 @@ if "expanded_id" not in st.session_state:
 # ── global styles ──────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* layout */
-.block-container { max-width: 1280px; padding-top: 1rem; padding-bottom: 2.5rem; }
-html, body, [data-testid="stAppViewContainer"] { background: #f1f5f9; }
+/* ── base ── */
+.block-container { max-width: 1280px; padding-top: 0.75rem; padding-bottom: 3rem; }
+html, body, [data-testid="stAppViewContainer"] { background: #f0f4f8; }
 
-/* top header bar */
+/* ── HEADER ── */
 .header-bar {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 20px; margin-bottom: 6px;
-    background: white; border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 26px; margin-bottom: 14px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(15,23,42,.22);
 }
-.header-title { font-size: 17px; font-weight: 700; color: #0f172a; }
+.header-left  { display: flex; align-items: center; gap: 14px; }
+.header-icon  { font-size: 30px; line-height: 1; }
+.header-title { font-size: 18px; font-weight: 800; color: white; letter-spacing: -.3px; }
+.header-sub   { font-size: 12px; color: #93c5fd; margin-top: 3px; font-weight: 500; }
+.header-right { display: flex; align-items: center; gap: 10px; }
 .period-badge {
-    font-size: 12px; font-weight: 600; color: #2563eb;
-    background: #eff6ff; border: 1px solid #bfdbfe;
-    border-radius: 20px; padding: 3px 10px;
+    font-size: 12px; font-weight: 600; color: #bfdbfe;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 5px 14px;
 }
 .adopted-badge {
-    font-size: 12px; font-weight: 600; color: #059669;
-    background: #ecfdf5; border: 1px solid #a7f3d0;
-    border-radius: 20px; padding: 3px 10px;
-    margin-left: auto;
+    font-size: 12px; font-weight: 700; color: #059669;
+    background: #ecfdf5; border: 1px solid #6ee7b7;
+    border-radius: 20px; padding: 5px 14px;
+}
+.adopted-badge-none {
+    font-size: 12px; color: #94a3b8;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px; padding: 5px 14px;
 }
 
-/* nav / category active indicator */
-.active-bar {
-    height: 3px; background: #2563eb; border-radius: 2px;
-    margin-top: -6px; margin-bottom: 6px;
-}
-.inactive-bar { height: 3px; margin-top: -6px; margin-bottom: 6px; }
+/* ── nav underline bars ── */
+.active-bar   { height: 3px; background: #2563eb; border-radius: 2px; margin-top: -6px; margin-bottom: 10px; }
+.inactive-bar { height: 3px; margin-top: -6px; margin-bottom: 10px; }
 
-/* cards */
+/* ── CARDS ── */
 .card-wrap {
-    border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px 24px;
-    background: white; margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.04);
-    transition: box-shadow .15s;
+    border: 1px solid #e2e8f0; border-radius: 18px;
+    background: white; margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    overflow: hidden;
 }
-.muted { font-size: 12px; color: #94a3b8; }
+.card-top-bar { height: 4px; width: 100%; }
+.card-body    { padding: 20px 22px 16px; }
+.card-meta    { display: flex; justify-content: space-between; align-items: center; }
+.muted        { font-size: 12px; color: #94a3b8; font-weight: 500; }
+.card-title   { margin-top: 8px; font-size: 17px; font-weight: 800; color: #0f172a; line-height: 1.4; }
 
-/* priority badges */
-.badge {
-    display: inline-block; font-size: 11px; font-weight: 700;
-    border-radius: 20px; padding: 3px 10px; letter-spacing: .3px;
-}
+/* ── priority badges ── */
+.badge      { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 8px; padding: 3px 9px; }
 .badge-HIGH { background: #fee2e2; color: #dc2626; }
-.badge-MID  { background: #fef9c3; color: #ca8a04; }
+.badge-MID  { background: #fef3c7; color: #d97706; }
 .badge-LOW  { background: #f1f5f9; color: #64748b; }
 
-/* one-liner & summary */
-.one-line { margin-top: 10px; color: #2563eb; font-size: 14px; font-weight: 600; }
-.summary  { margin-top: 6px; font-size: 14px; color: #334155; line-height: 1.85; }
-
-/* headlines box */
-.box {
-    margin-top: 14px; border: 1px solid #e2e8f0;
-    background: #f8fafc; border-radius: 14px; padding: 14px 16px;
+/* ── one-liner & summary ── */
+.one-line {
+    margin-top: 10px; font-size: 13px; font-weight: 700; color: #1d4ed8;
+    display: flex; align-items: center; gap: 8px;
 }
-.small-title { font-size: 11px; font-weight: 600; color: #64748b;
-    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.one-line-bar { display: inline-block; width: 3px; height: 14px; background: #3b82f6; border-radius: 2px; flex-shrink: 0; }
+.summary { margin-top: 8px; font-size: 13.5px; color: #475569; line-height: 1.9; }
+
+/* ── headlines box ── */
+.box {
+    margin-top: 14px; border: 1px solid #e8edf3;
+    background: #f8fafc; border-radius: 12px; padding: 13px 15px;
+}
+.small-title {
+    font-size: 10px; font-weight: 800; color: #94a3b8;
+    text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px;
+}
 .link-chip {
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 12px; color: #1e40af; background: white;
-    border: 1px solid #dbeafe; border-radius: 10px;
-    padding: 5px 10px; margin: 0 6px 6px 0;
-    text-decoration: none;
-    transition: background .12s;
+    border: 1px solid #dbeafe; border-radius: 8px;
+    padding: 5px 10px; margin: 0 6px 6px 0; text-decoration: none;
+    transition: all .12s;
 }
-.link-chip:hover { background: #eff6ff; }
+.link-chip:hover { background: #eff6ff; border-color: #93c5fd; }
 
-/* insight expand section */
+/* ── insight section ── */
 .insight-section {
-    margin-top: 16px; padding: 16px 18px;
-    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px;
+    margin-top: 14px; padding: 16px 18px;
+    background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+    border: 1px solid #dbeafe; border-radius: 14px;
 }
-.insight-label { font-size: 11px; font-weight: 700; color: #64748b;
-    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-.insight-text { font-size: 14px; color: #334155; line-height: 1.8; }
+.insight-label {
+    font-size: 10px; font-weight: 800; color: #94a3b8;
+    text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px;
+}
+.insight-text { font-size: 13.5px; color: #334155; line-height: 1.85; }
 .action-tag {
-    display: inline-block; font-size: 12px; color: #0f172a;
-    background: #f1f5f9; border: 1px solid #e2e8f0;
-    border-radius: 8px; padding: 4px 10px; margin: 3px 4px 3px 0;
+    display: inline-block; font-size: 12px; color: #1e40af;
+    background: #eff6ff; border: 1px solid #bfdbfe;
+    border-radius: 8px; padding: 5px 12px; margin: 3px 4px 3px 0; font-weight: 600;
 }
 
-/* store stat cards */
+/* ── STORE PAGE ── */
+.store-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 16px; padding: 20px 22px; margin-bottom: 14px; color: white;
+}
+.store-name  { font-size: 20px; font-weight: 800; }
+.store-sub   { font-size: 13px; color: #93c5fd; margin-top: 4px; font-weight: 500; }
+.store-trait {
+    display: inline-block; font-size: 12px; font-weight: 600; color: #bfdbfe;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 4px 12px; margin-top: 10px;
+}
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .stat-card {
-    border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px 16px;
-    background: white; margin-top: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px;
+    background: white; box-shadow: 0 1px 3px rgba(0,0,0,.04);
 }
-.stat-label { font-size: 11px; color: #94a3b8; font-weight: 500; }
-.stat-value { margin-top: 4px; font-weight: 700; font-size: 15px; color: #0f172a; }
+.stat-label { font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.stat-value { margin-top: 5px; font-weight: 800; font-size: 15px; color: #0f172a; }
 
-/* idea boxes */
+.progress-section { margin-top: 12px; }
+.prog-row   { margin-bottom: 14px; }
+.prog-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.prog-label { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; }
+.prog-val   { font-size: 13px; font-weight: 800; color: #0f172a; }
+.prog-bg    { background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden; }
+.prog-fill-blue   { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.prog-fill-purple { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+/* ── IDEA BOXES ── */
 .idea-box {
-    border-left: 4px solid #2563eb; border-radius: 0 16px 16px 0;
-    padding: 18px 20px; background: white;
-    border-top: 1px solid #e2e8f0;
-    border-right: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-    margin-top: 14px;
-    box-shadow: 0 2px 6px rgba(0,0,0,.04);
+    border-radius: 16px; background: white; border: 1px solid #e2e8f0;
+    margin-top: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.05); overflow: hidden;
 }
-.idea-num { font-size: 11px; font-weight: 700; color: #2563eb;
-    text-transform: uppercase; letter-spacing: .5px; }
-.idea-title { margin-top: 6px; font-weight: 700; font-size: 15px; color: #0f172a; }
-.idea-body { margin-top: 10px; font-size: 14px; color: #334155; line-height: 1.85; }
-.idea-reason { margin-top: 8px; font-size: 13px; color: #64748b; line-height: 1.8; }
+.idea-box-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; background: #f8fafc; border-bottom: 1px solid #f1f5f9;
+}
+.idea-num-circle {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: white; font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+}
+.idea-title    { font-weight: 800; font-size: 14px; color: #0f172a; }
+.idea-box-body { padding: 16px 18px; }
+.idea-body     { font-size: 13.5px; color: #334155; line-height: 1.85; }
+.idea-sep      { height: 1px; background: #f1f5f9; margin: 12px 0; }
+.idea-reason-label {
+    font-size: 10px; font-weight: 800; color: #94a3b8;
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px;
+}
+.idea-reason { font-size: 13px; color: #64748b; line-height: 1.8; }
 </style>
 """, unsafe_allow_html=True)
 
 # ── header bar ─────────────────────────────────────────────────────────────────
 adopted_count = len(st.session_state.selected_cards)
 adopted_html = (
-    f'<span class="adopted-badge">✔ 채택됨 {adopted_count}건</span>'
+    f'<span class="adopted-badge">✔ 채택 {adopted_count}건</span>'
     if adopted_count > 0
-    else '<span class="adopted-badge" style="background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;">채택 없음</span>'
+    else '<span class="adopted-badge-none">채택 없음</span>'
 )
 st.markdown(
     f"""
     <div class="header-bar">
-        <span style="font-size:22px;">⛳</span>
-        <span class="header-title">롯데 석주 주간 골프 MD 뉴스</span>
-        <span class="period-badge">📅 {PERIOD}</span>
-        {adopted_html}
+        <div class="header-left">
+            <span class="header-icon">⛳</span>
+            <div>
+                <div class="header-title">롯데 석주 주간 골프 MD 뉴스</div>
+                <div class="header-sub">골프 MD 주간 트렌드 및 점포 실행안 리포트</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="period-badge">📅 {PERIOD}</span>
+            {adopted_html}
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -364,14 +428,14 @@ st.markdown(
 # ── top navigation ─────────────────────────────────────────────────────────────
 nav1, nav2, _ = st.columns([1.1, 1.4, 9])
 with nav1:
-    if st.button("뉴스 분석", use_container_width=True, key="nav_news"):
+    if st.button("📰 뉴스 분석", use_container_width=True, key="nav_news"):
         st.session_state.page = "news"
     st.markdown(
         '<div class="active-bar"></div>' if st.session_state.page == "news" else '<div class="inactive-bar"></div>',
         unsafe_allow_html=True,
     )
 with nav2:
-    if st.button("점포 인사이트", use_container_width=True, key="nav_insight"):
+    if st.button("🏪 점포 인사이트", use_container_width=True, key="nav_insight"):
         st.session_state.page = "insight"
     st.markdown(
         '<div class="active-bar"></div>' if st.session_state.page == "insight" else '<div class="inactive-bar"></div>',
@@ -383,11 +447,13 @@ with nav2:
 # ══════════════════════════════════════════════════════════════════════════════
 if st.session_state.page == "news":
 
-    # category tabs
+    # category tabs with icons + count
     cat_cols = st.columns(4)
     for i, cat in enumerate(DATA.keys()):
         with cat_cols[i]:
-            if st.button(cat, use_container_width=True, key=f"cat_{cat}"):
+            icon = CATEGORY_ICON.get(cat, "")
+            count = len(DATA[cat])
+            if st.button(f"{icon} {cat} ({count})", use_container_width=True, key=f"cat_{cat}"):
                 st.session_state.category = cat
             st.markdown(
                 '<div class="active-bar"></div>' if st.session_state.category == cat else '<div class="inactive-bar"></div>',
@@ -398,39 +464,36 @@ if st.session_state.page == "news":
 
     for card in cards:
         p_label, p_bg, p_color = PRIORITY_STYLE.get(card["priority"], ("", "#f1f5f9", "#64748b"))
+        border_color = PRIORITY_COLOR.get(card["priority"], "#94a3b8")
 
-        st.markdown('<div class="card-wrap">', unsafe_allow_html=True)
-
-        # card header row
-        top1, top2 = st.columns([8, 1])
-        with top1:
-            st.markdown(
-                f'<div class="muted">{card["date"]} · {card["source"]}</div>'
-                f'<div style="margin-top:6px;font-size:18px;font-weight:700;color:#0f172a;">{card["title"]}</div>',
-                unsafe_allow_html=True,
-            )
-        with top2:
-            st.markdown(
-                f'<div style="text-align:right;padding-top:4px;">'
-                f'<span class="badge badge-{card["priority"]}">{p_label}</span></div>',
-                unsafe_allow_html=True,
-            )
-
-        st.markdown(f'<div class="one-line">{card["oneLine"]}</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="summary">{card["summary"]}</div>', unsafe_allow_html=True)
-
-        # headlines
         chips_html = "".join(
             f'<a class="link-chip" href="{h["url"]}" target="_blank" rel="noreferrer">↗ {h["title"]}</a>'
             for h in card["headlines"]
         )
+
         st.markdown(
-            f'<div class="box"><div class="small-title">관련 기사</div>{chips_html}</div>',
+            f"""
+            <div class="card-wrap">
+                <div class="card-top-bar" style="background:{border_color};"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="muted">{card["date"]} · {card["source"]}</span>
+                        <span class="badge badge-{card["priority"]}">{p_label}</span>
+                    </div>
+                    <div class="card-title">{card["title"]}</div>
+                    <div class="one-line"><span class="one-line-bar"></span>{card["oneLine"]}</div>
+                    <div class="summary">{card["summary"]}</div>
+                    <div class="box">
+                        <div class="small-title">관련 기사</div>
+                        {chips_html}
+                    </div>
+                </div>
+            """,
             unsafe_allow_html=True,
         )
 
         # expand button
-        exp_col, _ = st.columns([1.2, 7])
+        exp_col, _ = st.columns([1.4, 7])
         with exp_col:
             label = "인사이트 ▲" if st.session_state.expanded_id == card["id"] else "인사이트 ▼"
             if st.button(label, key=f"expand_{card['id']}"):
@@ -460,12 +523,6 @@ if st.session_state.page == "news":
             )
 
             adopt_col1, adopt_col2 = st.columns([6, 1.4])
-            with adopt_col1:
-                detail_chips = "".join(
-                    f'<a href="{h["url"]}" target="_blank" rel="noreferrer" class="link-chip">↗ {h["title"]}</a>'
-                    for h in card["headlines"]
-                )
-                st.markdown(detail_chips, unsafe_allow_html=True)
             with adopt_col2:
                 already = any(item["id"] == card["id"] for item in st.session_state.selected_cards)
                 if st.button(
@@ -491,26 +548,67 @@ else:
     store = next(item for item in STORE_PROFILES if item["name"] == selected_name)
     insights = build_store_insights(store, st.session_state.selected_cards)
 
+    # store header (dark)
+    st.markdown(
+        f"""
+        <div class="store-header">
+            <div class="store-name">{store["name"]}</div>
+            <div class="store-sub">연간 골프 매출 {store["annualSales"]} · 구매고객 {store["customers"]} · 객단가 {store["avgTicket"]}</div>
+            <span class="store-trait">📍 {store["trait"]}</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     left, right = st.columns([1.1, 2.2])
 
     with left:
+        age_pct = min(store["avgAge"], 70) / 70 * 100
         st.markdown(
-            '<div style="font-size:16px;font-weight:700;color:#0f172a;margin-bottom:4px;">점포 특성</div>',
+            f"""
+            <div style="font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;
+                        letter-spacing:.5px;margin-bottom:10px;">점포 지표</div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">연간 골프 매출</div>
+                    <div class="stat-value">{store["annualSales"]}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">구매고객수</div>
+                    <div class="stat-value">{store["customers"]}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">객단가</div>
+                    <div class="stat-value">{store["avgTicket"]}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">평균 연령대</div>
+                    <div class="stat-value">{store["avgAge"]}세</div>
+                </div>
+            </div>
+            <div class="progress-section">
+                <div class="prog-row">
+                    <div class="prog-header">
+                        <span class="prog-label">우수고객 구성비</span>
+                        <span class="prog-val">{store["vipRatio"]}%</span>
+                    </div>
+                    <div class="prog-bg">
+                        <div class="prog-fill-blue" style="width:{store["vipRatio"]}%;"></div>
+                    </div>
+                </div>
+                <div class="prog-row">
+                    <div class="prog-header">
+                        <span class="prog-label">평균 연령</span>
+                        <span class="prog-val">{store["avgAge"]}세</span>
+                    </div>
+                    <div class="prog-bg">
+                        <div class="prog-fill-purple" style="width:{age_pct:.0f}%;"></div>
+                    </div>
+                </div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
-        stats = [
-            ("연간 골프 매출",   store["annualSales"]),
-            ("구매고객수",       store["customers"]),
-            ("객단가",           store["avgTicket"]),
-            ("우수고객 구성비",  f'{store["vipRatio"]}%'),
-            ("평균 연령대",      f'{store["avgAge"]}세'),
-            ("점포 특성",        store["trait"]),
-        ]
-        for k, v in stats:
-            st.markdown(
-                f'<div class="stat-card"><div class="stat-label">{k}</div><div class="stat-value">{v}</div></div>',
-                unsafe_allow_html=True,
-            )
 
     with right:
         adopted_info = (
@@ -519,7 +617,7 @@ else:
             else '<span style="font-size:13px;color:#94a3b8;font-weight:400;"> — 전체 뉴스 기반</span>'
         )
         st.markdown(
-            f'<div style="font-size:16px;font-weight:700;color:#0f172a;margin-bottom:4px;">'
+            f'<div style="font-size:15px;font-weight:800;color:#0f172a;margin-bottom:8px;">'
             f'점포 맞춤 제안{adopted_info}</div>',
             unsafe_allow_html=True,
         )
@@ -534,10 +632,16 @@ else:
                 st.markdown(
                     f"""
                     <div class="idea-box">
-                        <div class="idea-num">제안 {idx}</div>
-                        <div class="idea-title">{idea["title"]}</div>
-                        <div class="idea-body"><b>제안:</b> {idea["idea"]}</div>
-                        <div class="idea-reason"><b>근거:</b> {idea["reason"]}</div>
+                        <div class="idea-box-head">
+                            <div class="idea-num-circle">{idx}</div>
+                            <div class="idea-title">{idea["title"]}</div>
+                        </div>
+                        <div class="idea-box-body">
+                            <div class="idea-body">{idea["idea"]}</div>
+                            <div class="idea-sep"></div>
+                            <div class="idea-reason-label">근거</div>
+                            <div class="idea-reason">{idea["reason"]}</div>
+                        </div>
                     </div>
                     """,
                     unsafe_allow_html=True,
