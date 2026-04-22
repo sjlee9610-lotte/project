@@ -1,11 +1,12 @@
-
 import streamlit as st
 
 st.set_page_config(
-    page_title="롯데 석주 주간 골프 MD 뉴스 알림", #
-    page_icon="⛳이석주",
+    page_title="롯데 석주 주간 골프 MD 뉴스 알림",
+    page_icon="⛳",
     layout="wide",
 )
+
+PERIOD = "4/1 ~ 4/22 오전"
 
 DATA = {
     "골프 브랜드": [
@@ -22,7 +23,7 @@ DATA = {
                 {"title": "시즌 출정식 통해 운영 방향 발표", "url": "https://search.naver.com/search.naver?where=news&query=골프단%20출정식"},
                 {"title": "브랜드 후원 노출 확대 계획 언급", "url": "https://search.naver.com/search.naver?where=news&query=골프%20후원%20브랜드"},
             ],
-            "insight": "시즌 출정·선수단 이슈는 단순 판촉보다 ‘이유 있는 행사’로 활용 가능.",
+            "insight": "시즌 출정·선수단 이슈는 단순 판촉보다 '이유 있는 행사'로 활용 가능.",
             "actions": ["선수 협업 팝업", "시즌 테마 매장 구성"],
         },
         {
@@ -81,7 +82,7 @@ DATA = {
     "기타 이슈": [
         {
             "id": "other-1",
-            "date": "04월",
+            "date": "04.15",
             "source": "국내 스포츠",
             "title": "러닝 시장 급성장",
             "priority": "HIGH",
@@ -100,18 +101,25 @@ DATA = {
 
 PRIORITY_ORDER = {"HIGH": 0, "MID": 1, "LOW": 2}
 
+PRIORITY_STYLE = {
+    "HIGH": ("🔴 HIGH", "#fee2e2", "#dc2626"),
+    "MID":  ("🟡 MID",  "#fef9c3", "#ca8a04"),
+    "LOW":  ("⚪ LOW",  "#f1f5f9", "#64748b"),
+}
+
 STORE_PROFILES = [
-    {"name": "잠실점", "annualSales": "350억", "customers": "2만명", "avgTicket": "80만원", "vipRatio": 45, "avgAge": 56, "trait": "롯데월드몰 이용가능"},
-    {"name": "본점", "annualSales": "250억", "customers": "1만 5천명", "avgTicket": "90만원", "vipRatio": 50, "avgAge": 47, "trait": "외국인 고객 많음"},
+    {"name": "잠실점",   "annualSales": "350억", "customers": "2만명",    "avgTicket": "80만원", "vipRatio": 45, "avgAge": 56, "trait": "롯데월드몰 이용가능"},
+    {"name": "본점",     "annualSales": "250억", "customers": "1만 5천명", "avgTicket": "90만원", "vipRatio": 50, "avgAge": 47, "trait": "외국인 고객 많음"},
     {"name": "부산본점", "annualSales": "250억", "customers": "1만 8천명", "avgTicket": "80만원", "vipRatio": 40, "avgAge": 51, "trait": "바닷가"},
-    {"name": "인천점", "annualSales": "200억", "customers": "1만 2천명", "avgTicket": "80만원", "vipRatio": 35, "avgAge": 43, "trait": "상권단독"},
-    {"name": "동탄점", "annualSales": "150억", "customers": "1만명", "avgTicket": "80만원", "vipRatio": 40, "avgAge": 39, "trait": "젊은점포"},
-    {"name": "노원점", "annualSales": "130억", "customers": "8천명", "avgTicket": "60만원", "vipRatio": 32, "avgAge": 54, "trait": "포켓상권"},
-    {"name": "영등포점", "annualSales": "100억", "customers": "7천명", "avgTicket": "40만원", "vipRatio": 30, "avgAge": 60, "trait": "경쟁열위"},
-    {"name": "광복점", "annualSales": "80억", "customers": "6천명", "avgTicket": "40만원", "vipRatio": 28, "avgAge": 55, "trait": "점포는큼"},
-    {"name": "미아점", "annualSales": "40억", "customers": "4천명", "avgTicket": "30만원", "vipRatio": 21, "avgAge": 65, "trait": "행사효율 좋음"},
-    {"name": "건대점", "annualSales": "40억", "customers": "4천명", "avgTicket": "20만원", "vipRatio": 15, "avgAge": 43, "trait": "골프 부진"},
+    {"name": "인천점",   "annualSales": "200억", "customers": "1만 2천명", "avgTicket": "80만원", "vipRatio": 35, "avgAge": 43, "trait": "상권단독"},
+    {"name": "동탄점",   "annualSales": "150억", "customers": "1만명",    "avgTicket": "80만원", "vipRatio": 40, "avgAge": 39, "trait": "젊은점포"},
+    {"name": "노원점",   "annualSales": "130억", "customers": "8천명",    "avgTicket": "60만원", "vipRatio": 32, "avgAge": 54, "trait": "포켓상권"},
+    {"name": "영등포점", "annualSales": "100억", "customers": "7천명",    "avgTicket": "40만원", "vipRatio": 30, "avgAge": 60, "trait": "경쟁열위"},
+    {"name": "광복점",   "annualSales": "80억",  "customers": "6천명",    "avgTicket": "40만원", "vipRatio": 28, "avgAge": 55, "trait": "점포는큼"},
+    {"name": "미아점",   "annualSales": "40억",  "customers": "4천명",    "avgTicket": "30만원", "vipRatio": 21, "avgAge": 65, "trait": "행사효율 좋음"},
+    {"name": "건대점",   "annualSales": "40억",  "customers": "4천명",    "avgTicket": "20만원", "vipRatio": 15, "avgAge": 43, "trait": "골프 부진"},
 ]
+
 
 def build_store_idea(store, item):
     suggestions = []
@@ -178,6 +186,7 @@ def build_store_idea(store, item):
 
     return suggestions
 
+
 def score_idea(store, item):
     score = 0
     if store["vipRatio"] >= 45:
@@ -193,6 +202,7 @@ def score_idea(store, item):
     score += len(item["actions"])
     return score
 
+
 def build_store_insights(store, selected_cards):
     source_items = selected_cards if selected_cards else [item for items in DATA.values() for item in items]
     ideas = []
@@ -206,6 +216,8 @@ def build_store_insights(store, selected_cards):
     ideas.sort(key=lambda x: x["score"], reverse=True)
     return ideas[:3]
 
+
+# ── session state ─────────────────────────────────────────────────────────────
 if "page" not in st.session_state:
     st.session_state.page = "news"
 if "category" not in st.session_state:
@@ -215,139 +227,317 @@ if "selected_cards" not in st.session_state:
 if "expanded_id" not in st.session_state:
     st.session_state.expanded_id = None
 
+# ── global styles ──────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-.block-container { max-width: 1280px; padding-top: 1.2rem; padding-bottom: 2rem; }
-html, body, [data-testid="stAppViewContainer"] { background: #f8fafc; }
-.main-nav-spacer { height: 0.2rem; }
-.card-wrap { border: 1px solid #e2e8f0; border-radius: 24px; padding: 20px; background: white; margin-bottom: 16px; }
+/* layout */
+.block-container { max-width: 1280px; padding-top: 1rem; padding-bottom: 2.5rem; }
+html, body, [data-testid="stAppViewContainer"] { background: #f1f5f9; }
+
+/* top header bar */
+.header-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; margin-bottom: 6px;
+    background: white; border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.header-title { font-size: 17px; font-weight: 700; color: #0f172a; }
+.period-badge {
+    font-size: 12px; font-weight: 600; color: #2563eb;
+    background: #eff6ff; border: 1px solid #bfdbfe;
+    border-radius: 20px; padding: 3px 10px;
+}
+.adopted-badge {
+    font-size: 12px; font-weight: 600; color: #059669;
+    background: #ecfdf5; border: 1px solid #a7f3d0;
+    border-radius: 20px; padding: 3px 10px;
+    margin-left: auto;
+}
+
+/* nav / category active indicator */
+.active-bar {
+    height: 3px; background: #2563eb; border-radius: 2px;
+    margin-top: -6px; margin-bottom: 6px;
+}
+.inactive-bar { height: 3px; margin-top: -6px; margin-bottom: 6px; }
+
+/* cards */
+.card-wrap {
+    border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px 24px;
+    background: white; margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    transition: box-shadow .15s;
+}
 .muted { font-size: 12px; color: #94a3b8; }
-.one-line { margin-top: 10px; color: #2563eb; font-size: 14px; font-weight: 500; }
-.summary { margin-top: 6px; font-size: 14px; color: #334155; line-height: 1.8; }
-.box { margin-top: 14px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 16px; padding: 14px; }
-.small-title { font-size: 12px; color: #64748b; margin-bottom: 8px; }
-.link-chip { display: inline-block; font-size: 12px; color: #0f172a; text-decoration: underline; text-underline-offset: 2px; margin-bottom: 8px; }
-.selected-box { border: 1px solid #e2e8f0; border-radius: 18px; padding: 14px; background: #f8fafc; margin-top: 10px; }
-.idea-box { border: 1px solid #e2e8f0; border-radius: 18px; padding: 16px; background: #f8fafc; margin-top: 12px; }
+
+/* priority badges */
+.badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    border-radius: 20px; padding: 3px 10px; letter-spacing: .3px;
+}
+.badge-HIGH { background: #fee2e2; color: #dc2626; }
+.badge-MID  { background: #fef9c3; color: #ca8a04; }
+.badge-LOW  { background: #f1f5f9; color: #64748b; }
+
+/* one-liner & summary */
+.one-line { margin-top: 10px; color: #2563eb; font-size: 14px; font-weight: 600; }
+.summary  { margin-top: 6px; font-size: 14px; color: #334155; line-height: 1.85; }
+
+/* headlines box */
+.box {
+    margin-top: 14px; border: 1px solid #e2e8f0;
+    background: #f8fafc; border-radius: 14px; padding: 14px 16px;
+}
+.small-title { font-size: 11px; font-weight: 600; color: #64748b;
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.link-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; color: #1e40af; background: white;
+    border: 1px solid #dbeafe; border-radius: 10px;
+    padding: 5px 10px; margin: 0 6px 6px 0;
+    text-decoration: none;
+    transition: background .12s;
+}
+.link-chip:hover { background: #eff6ff; }
+
+/* insight expand section */
+.insight-section {
+    margin-top: 16px; padding: 16px 18px;
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px;
+}
+.insight-label { font-size: 11px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.insight-text { font-size: 14px; color: #334155; line-height: 1.8; }
+.action-tag {
+    display: inline-block; font-size: 12px; color: #0f172a;
+    background: #f1f5f9; border: 1px solid #e2e8f0;
+    border-radius: 8px; padding: 4px 10px; margin: 3px 4px 3px 0;
+}
+
+/* store stat cards */
+.stat-card {
+    border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px 16px;
+    background: white; margin-top: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.stat-label { font-size: 11px; color: #94a3b8; font-weight: 500; }
+.stat-value { margin-top: 4px; font-weight: 700; font-size: 15px; color: #0f172a; }
+
+/* idea boxes */
+.idea-box {
+    border-left: 4px solid #2563eb; border-radius: 0 16px 16px 0;
+    padding: 18px 20px; background: white;
+    border-top: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-top: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+.idea-num { font-size: 11px; font-weight: 700; color: #2563eb;
+    text-transform: uppercase; letter-spacing: .5px; }
+.idea-title { margin-top: 6px; font-weight: 700; font-size: 15px; color: #0f172a; }
+.idea-body { margin-top: 10px; font-size: 14px; color: #334155; line-height: 1.85; }
+.idea-reason { margin-top: 8px; font-size: 13px; color: #64748b; line-height: 1.8; }
 </style>
 """, unsafe_allow_html=True)
 
-nav1, nav2, _ = st.columns([1.2, 1.6, 8])
+# ── header bar ─────────────────────────────────────────────────────────────────
+adopted_count = len(st.session_state.selected_cards)
+adopted_html = (
+    f'<span class="adopted-badge">✔ 채택됨 {adopted_count}건</span>'
+    if adopted_count > 0
+    else '<span class="adopted-badge" style="background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;">채택 없음</span>'
+)
+st.markdown(
+    f"""
+    <div class="header-bar">
+        <span style="font-size:22px;">⛳</span>
+        <span class="header-title">롯데 석주 주간 골프 MD 뉴스</span>
+        <span class="period-badge">📅 {PERIOD}</span>
+        {adopted_html}
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ── top navigation ─────────────────────────────────────────────────────────────
+nav1, nav2, _ = st.columns([1.1, 1.4, 9])
 with nav1:
     if st.button("뉴스 분석", use_container_width=True, key="nav_news"):
         st.session_state.page = "news"
+    st.markdown(
+        '<div class="active-bar"></div>' if st.session_state.page == "news" else '<div class="inactive-bar"></div>',
+        unsafe_allow_html=True,
+    )
 with nav2:
     if st.button("점포 인사이트", use_container_width=True, key="nav_insight"):
         st.session_state.page = "insight"
+    st.markdown(
+        '<div class="active-bar"></div>' if st.session_state.page == "insight" else '<div class="inactive-bar"></div>',
+        unsafe_allow_html=True,
+    )
 
-st.markdown('<div class="main-nav-spacer"></div>', unsafe_allow_html=True)
-
+# ══════════════════════════════════════════════════════════════════════════════
+# NEWS PAGE
+# ══════════════════════════════════════════════════════════════════════════════
 if st.session_state.page == "news":
+
+    # category tabs
     cat_cols = st.columns(4)
     for i, cat in enumerate(DATA.keys()):
         with cat_cols[i]:
             if st.button(cat, use_container_width=True, key=f"cat_{cat}"):
                 st.session_state.category = cat
+            st.markdown(
+                '<div class="active-bar"></div>' if st.session_state.category == cat else '<div class="inactive-bar"></div>',
+                unsafe_allow_html=True,
+            )
 
     cards = sorted(DATA[st.session_state.category], key=lambda x: PRIORITY_ORDER.get(x["priority"], 99))
 
     for card in cards:
+        p_label, p_bg, p_color = PRIORITY_STYLE.get(card["priority"], ("", "#f1f5f9", "#64748b"))
+
         st.markdown('<div class="card-wrap">', unsafe_allow_html=True)
-        top1, top2 = st.columns([7, 1])
+
+        # card header row
+        top1, top2 = st.columns([8, 1])
         with top1:
-            st.markdown(f'<div class="muted">{card["date"]} · {card["source"]}</div>', unsafe_allow_html=True)
-            st.markdown(f'### {card["title"]}')
+            st.markdown(
+                f'<div class="muted">{card["date"]} · {card["source"]}</div>'
+                f'<div style="margin-top:6px;font-size:18px;font-weight:700;color:#0f172a;">{card["title"]}</div>',
+                unsafe_allow_html=True,
+            )
         with top2:
-            st.markdown(f'<div style="text-align:right;font-size:12px;">{card["priority"]}</div>', unsafe_allow_html=True)
+            st.markdown(
+                f'<div style="text-align:right;padding-top:4px;">'
+                f'<span class="badge badge-{card["priority"]}">{p_label}</span></div>',
+                unsafe_allow_html=True,
+            )
 
         st.markdown(f'<div class="one-line">{card["oneLine"]}</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="summary">{card["summary"]}</div>', unsafe_allow_html=True)
 
-        headlines_html = "".join(
-            f'<a class="link-chip" href="{h["url"]}" target="_blank" rel="noreferrer">{h["title"]}</a><br/>'
+        # headlines
+        chips_html = "".join(
+            f'<a class="link-chip" href="{h["url"]}" target="_blank" rel="noreferrer">↗ {h["title"]}</a>'
             for h in card["headlines"]
         )
         st.markdown(
-            f"""
-            <div class="box">
-                <div class="small-title">관련 기사</div>
-                {headlines_html}
-            </div>
-            """,
+            f'<div class="box"><div class="small-title">관련 기사</div>{chips_html}</div>',
             unsafe_allow_html=True,
         )
 
-        exp_col, _ = st.columns([1, 7])
+        # expand button
+        exp_col, _ = st.columns([1.2, 7])
         with exp_col:
             label = "인사이트 ▲" if st.session_state.expanded_id == card["id"] else "인사이트 ▼"
             if st.button(label, key=f"expand_{card['id']}"):
-                st.session_state.expanded_id = None if st.session_state.expanded_id == card["id"] else card["id"]
-
-        if st.session_state.expanded_id == card["id"]:
-            info1, info2 = st.columns(2)
-            with info1:
-                st.markdown("**인사이트**")
-                st.write(card["insight"])
-            with info2:
-                st.markdown("**실행**")
-                for action in card["actions"]:
-                    st.markdown(f"- {action}")
-
-            bottom_left, bottom_right = st.columns([5, 1.5])
-            with bottom_left:
-                chips = "".join(
-                    f'<a href="{h["url"]}" target="_blank" rel="noreferrer" style="display:inline-block;border:1px solid #e2e8f0;border-radius:12px;padding:8px 12px;margin-right:8px;margin-top:8px;font-size:12px;color:#0f172a;text-decoration:none;background:white;">{h["title"]}</a>'
-                    for h in card["headlines"]
+                st.session_state.expanded_id = (
+                    None if st.session_state.expanded_id == card["id"] else card["id"]
                 )
-                st.markdown(chips, unsafe_allow_html=True)
-            with bottom_right:
-                already = any(item["id"] == card["id"] for item in st.session_state.selected_cards)
-                if st.button("채택됨" if already else "실행안 채택", key=f"select_{card['id']}", disabled=already, use_container_width=True):
-                    st.session_state.selected_cards.append(card)
-                    st.rerun()
 
-        st.markdown("</div>", unsafe_allow_html=True)
-
-else:
-    selected_name = st.selectbox("점포 선택", [item["name"] for item in STORE_PROFILES], index=0)
-    store = next(item for item in STORE_PROFILES if item["name"] == selected_name)
-    insights = build_store_insights(store, st.session_state.selected_cards)
-
-    left, right = st.columns([1.2, 2])
-    with left:
-        st.markdown("### 점포 선택 및 특성")
-        stats = [
-            ("연간 골프 매출", store["annualSales"]),
-            ("구매고객수", store["customers"]),
-            ("객단가", store["avgTicket"]),
-            ("우수고객 구성비", f'{store["vipRatio"]}%'),
-            ("평균 연령대", f'{store["avgAge"]}세'),
-            ("점포 특성", store["trait"]),
-        ]
-        for k, v in stats:
+        # expanded section
+        if st.session_state.expanded_id == card["id"]:
+            action_tags = "".join(f'<span class="action-tag">{a}</span>' for a in card["actions"])
             st.markdown(
                 f"""
-                <div class="selected-box">
-                    <div class="muted">{k}</div>
-                    <div style="margin-top:4px;font-weight:600;">{v}</div>
+                <div class="insight-section">
+                    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:220px;">
+                            <div class="insight-label">인사이트</div>
+                            <div class="insight-text">{card["insight"]}</div>
+                        </div>
+                        <div style="flex:1;min-width:180px;">
+                            <div class="insight-label">실행 액션</div>
+                            <div style="margin-top:6px;">{action_tags}</div>
+                        </div>
+                    </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
+            adopt_col1, adopt_col2 = st.columns([6, 1.4])
+            with adopt_col1:
+                detail_chips = "".join(
+                    f'<a href="{h["url"]}" target="_blank" rel="noreferrer" class="link-chip">↗ {h["title"]}</a>'
+                    for h in card["headlines"]
+                )
+                st.markdown(detail_chips, unsafe_allow_html=True)
+            with adopt_col2:
+                already = any(item["id"] == card["id"] for item in st.session_state.selected_cards)
+                if st.button(
+                    "✔ 채택됨" if already else "실행안 채택",
+                    key=f"select_{card['id']}",
+                    disabled=already,
+                    use_container_width=True,
+                ):
+                    st.session_state.selected_cards.append(card)
+                    st.rerun()
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# STORE INSIGHT PAGE
+# ══════════════════════════════════════════════════════════════════════════════
+else:
+    selected_name = st.selectbox(
+        "점포 선택",
+        [item["name"] for item in STORE_PROFILES],
+        index=0,
+    )
+    store = next(item for item in STORE_PROFILES if item["name"] == selected_name)
+    insights = build_store_insights(store, st.session_state.selected_cards)
+
+    left, right = st.columns([1.1, 2.2])
+
+    with left:
+        st.markdown(
+            '<div style="font-size:16px;font-weight:700;color:#0f172a;margin-bottom:4px;">점포 특성</div>',
+            unsafe_allow_html=True,
+        )
+        stats = [
+            ("연간 골프 매출",   store["annualSales"]),
+            ("구매고객수",       store["customers"]),
+            ("객단가",           store["avgTicket"]),
+            ("우수고객 구성비",  f'{store["vipRatio"]}%'),
+            ("평균 연령대",      f'{store["avgAge"]}세'),
+            ("점포 특성",        store["trait"]),
+        ]
+        for k, v in stats:
+            st.markdown(
+                f'<div class="stat-card"><div class="stat-label">{k}</div><div class="stat-value">{v}</div></div>',
+                unsafe_allow_html=True,
+            )
+
     with right:
-        st.markdown("### 점포 맞춤 제안")
+        adopted_info = (
+            f'<span style="font-size:13px;color:#64748b;font-weight:400;"> — 채택 뉴스 {adopted_count}건 기반</span>'
+            if adopted_count > 0
+            else '<span style="font-size:13px;color:#94a3b8;font-weight:400;"> — 전체 뉴스 기반</span>'
+        )
+        st.markdown(
+            f'<div style="font-size:16px;font-weight:700;color:#0f172a;margin-bottom:4px;">'
+            f'점포 맞춤 제안{adopted_info}</div>',
+            unsafe_allow_html=True,
+        )
+
         if not insights:
-            st.write("현재 점포 특성과 연결되는 추천 실행안이 없습니다.")
+            st.markdown(
+                '<div style="color:#94a3b8;font-size:14px;margin-top:16px;">현재 점포 특성과 연결되는 추천 실행안이 없습니다.</div>',
+                unsafe_allow_html=True,
+            )
         else:
             for idx, idea in enumerate(insights, start=1):
                 st.markdown(
                     f"""
                     <div class="idea-box">
-                        <div class="muted">제안 {idx}</div>
-                        <div style="margin-top:4px;font-weight:700;color:#0f172a;">{idea["title"]}</div>
-                        <div style="margin-top:10px;font-size:14px;color:#334155;line-height:1.8;"><b>제안:</b> {idea["idea"]}</div>
-                        <div style="margin-top:10px;font-size:14px;color:#475569;line-height:1.9;"><b>근거:</b> {idea["reason"]}</div>
+                        <div class="idea-num">제안 {idx}</div>
+                        <div class="idea-title">{idea["title"]}</div>
+                        <div class="idea-body"><b>제안:</b> {idea["idea"]}</div>
+                        <div class="idea-reason"><b>근거:</b> {idea["reason"]}</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
