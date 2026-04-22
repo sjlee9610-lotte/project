@@ -336,6 +336,13 @@ header { visibility: hidden !important; height: 0 !important; }
 .stApp > header { display: none !important; }
 footer { visibility: hidden !important; }
 
+/* 네비게이션 버튼 줄바꿈 방지 */
+div[data-testid="stHorizontalBlock"] > div:nth-child(1) .stButton > button,
+div[data-testid="stHorizontalBlock"] > div:nth-child(2) .stButton > button {
+    white-space: nowrap !important;
+    font-size: 17px !important;
+}
+
 /* ── HEADER ── */
 .header-bar {
     display: flex; align-items: center; justify-content: space-between;
@@ -515,7 +522,7 @@ st.markdown(
 )
 
 # ── top navigation ─────────────────────────────────────────────────────────────
-nav1, nav2, _ = st.columns([1.1, 1.4, 9])
+nav1, nav2, _ = st.columns([2.0, 2.4, 7])
 with nav1:
     if st.button("📰 뉴스 분석", use_container_width=True, key="nav_news"):
         st.session_state.page = "news"
