@@ -2,7 +2,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="롯데 석주 주간 골프 MD 뉴스 알림",
+    page_title="롯데 석주 주간 골프 MD 뉴스 알림", #
     page_icon="⛳이석주",
     layout="wide",
 )
